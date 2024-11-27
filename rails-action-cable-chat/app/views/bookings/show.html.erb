@@ -1,0 +1,27 @@
+<div class="container chat">
+  <h1>Your booking for <%= @booking.restaurant.name %></h1>
+
+
+  <%= turbo_stream_from "booking_#{@booking.id}_messages" %>
+  <div id="messages" class="messages">
+    <% @booking.messages.each do |message| %>
+      <%= render "messages/message", message: message, user: current_user %>
+    <% end %>
+  </div>
+
+  <%= form_with model: [@booking, @message],
+  local: true,
+    class: "d-flex",
+    data: { 
+      controller: "reset-form", 
+      action: "turbo:submit-end->reset-form#reset"
+    } do |f| %>
+    <% other_user = current_user == @booking.restaurant.user ? @booking.user : @booking.restaurant.user %>
+    <%= f.text_area :content,
+      placeholder: "Message #{other_user.nickname}",
+      class: "flex-grow-1"
+    %>
+
+    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+  <% end %>
+</div>

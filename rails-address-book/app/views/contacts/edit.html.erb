@@ -1,0 +1,9 @@
+<%= turbo_frame_tag :contact_details do %>
+  <h1>Edit contact</h1>
+
+  <%= render "form", contact: @contact %>
+
+  <br>
+
+  <%= link_to "< Back", contact_path(@contact) %>
+<% end %>

@@ -1,0 +1,9 @@
+development:
+  adapter: solid_cable
+
+test:
+  adapter: test
+
+production:
+  adapter: solid_cable
+  channel_prefix: rails_action_cable_chat_production
