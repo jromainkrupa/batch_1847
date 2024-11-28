@@ -17,9 +17,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body data-current-user-id="<%= user_signed_in? ? current_user.id : "" %>">
-    <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
+  <body><%= render "shared/navbar" %>
+<%= render "shared/flashes" %>
 
     <%= yield %>
   </body>
